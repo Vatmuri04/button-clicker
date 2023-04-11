@@ -1,23 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
 
 function App() {
+  const [count, setCount] = useState(() => {
+    const storedCount = localStorage.getItem("count");
+    return storedCount ? parseInt(storedCount) : 0;
+  });
+
+  const [buttonColor, setButtonColor] = useState('blue');
+  
+  useEffect(() => {
+    localStorage.setItem("count", count);
+  }, [count]);
+
+  function handleIncrement() {
+    setCount(count + 1);
+    const colors = ['red', 'green', 'yellow', 'purple', 'pink'];
+    const randomColor = colors[Math.floor(Math.random() * colors.length)];
+    setButtonColor(randomColor);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div style={{ display: "flex", alignItems: "center", height: "100vh" }}>
+      <div style={{ margin: "auto", textAlign: "center" }}>
+        <p>Counter value: {count}</p>
+        <button style={{ backgroundColor: buttonColor }} onClick={handleIncrement}>Click me!</button>      </div>
     </div>
   );
 }
