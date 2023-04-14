@@ -1,7 +1,7 @@
 {
   "name": "button-clicker",
-  "homepage": "http://Vatmuri04.github.io/button-clicker"
   "version": "0.1.0",
+  "homepage": "http://Vatmuri04.github.io/button-clicker",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
